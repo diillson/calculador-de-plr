@@ -26,8 +26,6 @@ Você vai precisar do Go (1.15+), Git e uma xícara de café (ou chá, se prefer
    ```sh
    git clone https://github.com/diillson/calculador-de-plr.git
    ```
-   (Substitua `[URL_DO_REPOSITORIO]` pela URL do nosso repo!)
-
 2. **Entre no nosso mundo:**
    ```sh
    cd calculador-de-plr
