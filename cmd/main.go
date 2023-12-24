@@ -47,5 +47,5 @@ func runPLRCalculator(cmd *cobra.Command, args []string) {
 		return
 	}
 
-	logrus.Infof("A PLR bruta é: R$ %.2f", plrFormatada)
+	logrus.Infof("A PLR bruta é: R$ %s", plrFormatada)
 }
