@@ -11,7 +11,7 @@ func TestCalculator_CalcularPLR(t *testing.T) {
 	tests := []struct {
 		name    string
 		dados   domain.PLRDados
-		wantPLR float64
+		wantPLR string
 		wantErr bool
 	}{
 		{
@@ -22,7 +22,7 @@ func TestCalculator_CalcularPLR(t *testing.T) {
 				PorcentagemParticipacao: 0.8,
 				MesesTrabalhados:        12,
 			},
-			wantPLR: 16000,
+			wantPLR: "16,000.00", // Valor formatado como string
 			wantErr: false,
 		},
 		// Adicionar mais casos de teste conforme necessário

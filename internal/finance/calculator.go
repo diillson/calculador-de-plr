@@ -1,6 +1,7 @@
 package finance
 
 import (
+	"fmt"
 	"github.com/diillson/calculador-de-plr/internal/domain"
 	"github.com/sirupsen/logrus"
 )
@@ -15,7 +16,7 @@ func NewCalculator() *Calculator {
 //	return dados.Calcular()
 //}
 
-func (c *Calculator) CalcularPLR(dados domain.PLRDados) (float64, error) {
+func (c *Calculator) CalcularPLR(dados domain.PLRDados) (string, error) {
 	plr, err := dados.Calcular()
 	if err != nil {
 		logrus.WithFields(logrus.Fields{
@@ -24,7 +25,9 @@ func (c *Calculator) CalcularPLR(dados domain.PLRDados) (float64, error) {
 			"porcentagemParticipacao": dados.PorcentagemParticipacao,
 			"mesesTrabalhados":        dados.MesesTrabalhados,
 		}).Errorf("Erro ao calcular PLR: %v", err)
-		return 0, err
+		return "", err
 	}
-	return plr, nil
+	// Formatação do valor da PLR para melhor legibilidade
+	plrFormatado := fmt.Sprintf("%,.2f", plr)
+	return plrFormatado, nil
 }

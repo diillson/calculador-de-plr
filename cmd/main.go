@@ -41,11 +41,11 @@ func runPLRCalculator(cmd *cobra.Command, args []string) {
 	}
 
 	calculadora := finance.NewCalculator()
-	plr, err := calculadora.CalcularPLR(plrData)
+	plrFormatada, err := calculadora.CalcularPLR(plrData)
 	if err != nil {
 		logrus.Errorf("Erro no cálculo da PLR: %v", err)
 		return
 	}
 
-	logrus.Infof("A PLR bruta é: R$ %.2f", plr)
+	logrus.Infof("A PLR bruta é: R$ %.2f", plrFormatada)
 }
