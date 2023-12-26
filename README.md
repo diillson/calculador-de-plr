@@ -42,6 +42,40 @@ Você vai precisar do Go (1.15+), Git e uma xícara de café (ou chá, se prefer
 
 Depois de compilar, só rodar:
 
+**🚀 Uso de Flags!**
+
+Você pode usar as seguintes flags para fornecer dados ao aplicativo:
+
+    --salario ou -s: Define o salário do funcionário.
+    --multiplicador ou -m: Especifica o multiplicador da PLR.
+    --participacao ou -p: Define a porcentagem de participação nos lucros.
+    --meses ou -t: Informa o número de meses trabalhados.
+
+## Exemplo de Uso com Flags
+
+Execute o calculador da PLR com flags assim:
+```sh
+
+./plr_calculator --salario 7000 --multiplicador 2 --participacao 83 --meses 12
+```
+
+Ou de forma mais curta:
+```sh
+
+./plr_calculator -s 7000 -m 2 -p 83 -t 12
+```
+
+**Usando --help**
+
+Quer saber mais sobre as flags? Simples! Use a flag --help para obter uma descrição detalhada de todas as opções disponíveis:
+
+```sh
+
+./plr_calculator --help
+```
+
+**Usando de forma interativa**
+
 ```sh
 ./plr_calculator
 ```
