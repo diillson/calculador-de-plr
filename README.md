@@ -88,7 +88,7 @@ Tem uma ideia brilhante? Encontrou um bugzinho? Contribuições são o coração
 
 ## 📄 Licença
 
-Este tesouro está sob a licença [LICENCE](https://github.com/diillson/calculador-de-plr/blob/main/LICENSE). Veja `LICENSE.md` para detalhes.
+Este tesouro está sob a licença [MTI](https://github.com/diillson/calculador-de-plr/blob/main/LICENSE). Veja `LICENSE` para detalhes.
 
 ## 📚 Aprenda Mais
 
