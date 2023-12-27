@@ -2,6 +2,8 @@
 
 ## 🎉 Sobre o Projeto
 
+
+
 Oi, pessoal! Aqui é onde a mágica acontece no mundo dos cálculos da PLR (Participação nos Lucros e Resultados). Este aplicativo, criado com Go, vai te surpreender com sua habilidade de calcular sua PLR num piscar de olhos. E adivinha? Ele é super fácil de usar, mas por trás da simplicidade, há um monte de tecnologia legal!
 
 ## 🚀 Funcionalidades
