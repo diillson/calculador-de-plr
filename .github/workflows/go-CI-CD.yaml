@@ -29,7 +29,7 @@ jobs:
 
       # Ou, se você quiser listar arquivos em um diretório específico, use:
       - name: List files in a specific directory
-        run: ls -la path/to/directory
+        run: ls -la ./calculador-de-plr
 
       - name: Build
         run: |
@@ -66,7 +66,7 @@ jobs:
 
       # Ou, se você quiser listar arquivos em um diretório específico, use:
       - name: List files in a specific directory
-        run: ls -la path/to/directory
+        run: ls -la ./calculador-de-plr
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
