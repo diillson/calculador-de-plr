@@ -6,6 +6,8 @@ import (
 	"github.com/diillson/calculador-de-plr/pkg/input"
 	"github.com/diillson/calculador-de-plr/pkg/validation"
 	"os"
+	"strconv"
+	"strings"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -73,5 +75,24 @@ func runPLRCalculator(cmd *cobra.Command, args []string) {
 		return
 	}
 
+	// Converter plrFormatada de volta para float
+	plrBruta, err := strconv.ParseFloat(strings.ReplaceAll(plrFormatada, ",", ""), 64)
+	if err != nil {
+		logrus.Errorf("Erro ao converter PLR formatada: %v", err)
+		return
+	}
+
+	tabelaIRPF := domain.TabelaIRPF()
+
+	resultadoIRPF, err := calculadora.CalcularIRPF(plrBruta, tabelaIRPF)
+	if err != nil {
+		logrus.Errorf("Erro ao calcular o IRPF: %v", err)
+		return
+	}
+
 	logrus.Infof("A PLR bruta é: R$ %s", plrFormatada)
+	logrus.Infof("Alíquota: %.2f%%", resultadoIRPF.Aliquota)
+	logrus.Infof("Parcela a Deduzir: R$ %.2f", resultadoIRPF.ParcelaDeduzir)
+	logrus.Infof("Imposto de Renda Apurado: R$ %.2f", resultadoIRPF.ImpostoApurado)
+	logrus.Infof("Valor Líquido da PLR: R$ %.2f", resultadoIRPF.ValorLiquido)
 }
