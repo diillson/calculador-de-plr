@@ -18,7 +18,7 @@ Oi, pessoal! Aqui é onde a mágica acontece no mundo dos cálculos da PLR (Part
 
 ## 🏗 Como Montar seu Ambiente
 
-Você vai precisar do Go (1.15+), Git e uma xícara de café (ou chá, se preferir).
+Você vai precisar do Go (1.21+), Git e uma xícara de café (ou chá, se preferir).
 
 ### 📋 Passo a Passo para a Diversão
 
