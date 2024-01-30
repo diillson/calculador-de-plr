@@ -68,12 +68,43 @@ jobs:
       #- name: List files in a specific directory
       #  run: ls -la ./calculador-de-plr
 
-      - name: Upload Release Asset
+      - name: Zip the build directories
+        run: |
+          zip -r plr_calculator-darwin.zip plr_calculator-darwin-${{ github.sha }}
+          zip -r plr_calculator-linux.zip plr_calculator-linux-${{ github.sha }}
+          zip -r plr_calculator-windows.zip plr_calculator-windows-${{ github.sha }}
+
+#      - name: Upload Release Asset
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: /home/runner/work/calculador-de-plr/calculador-de-plr/plr_calculator*
+#          asset_name: plr_calculator-${{ github.run_number }}.zip
+#          asset_content_type: application/zip
+
+      - name: Upload Darwin Build
         uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /home/runner/work/calculador-de-plr/calculador-de-plr/plr_calculator*
-          asset_name: plr_calculator-${{ github.run_number }}.zip
+          asset_path: ./plr_calculator-darwin.zip
+          asset_name: plr_calculator-darwin-${{ github.run_number }}.zip
           asset_content_type: application/zip
+
+      - name: Upload Linux Build
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./plr_calculator-linux.zip
+          asset_name: plr_calculator-linux-${{ github.run_number }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload Windows Build
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./plr_calculator-windows.zip
+          asset_name: plr_calculator-windows-${{ github.run_number }}.zip
+          asset_content_type: application/zip
+
