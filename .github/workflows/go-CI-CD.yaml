@@ -62,7 +62,7 @@ jobs:
 
       # Passo para listar arquivos no diretório de trabalho atual
       - name: List files in the current directory
-        run: ls -la
+        run: ls -la && pwd
 
       # Ou, se você quiser listar arquivos em um diretório específico, use:
       #- name: List files in a specific directory
@@ -74,6 +74,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./plr_calculator-*
+          asset_path: ./plr_calculator*
           asset_name: plr_calculator-${{ github.run_number }}.zip
           asset_content_type: application/zip
