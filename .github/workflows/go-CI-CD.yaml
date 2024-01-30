@@ -22,9 +22,19 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: ${{ matrix.go-version }}
+
+      # Passo para listar arquivos no diretório de trabalho atual
+      - name: List files in the current directory
+        run: ls -la
+
+      # Ou, se você quiser listar arquivos em um diretório específico, use:
+      - name: List files in a specific directory
+        run: ls -la path/to/directory
+
       - name: Build
         run: |
           env GOOS=${{ matrix.os }} GOARCH=amd64 go build -v -o plr_calculator-${{ matrix.os }}-${{ github.sha }} ./cmd
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -38,6 +48,7 @@ jobs:
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -48,6 +59,15 @@ jobs:
           release_name: Release ${{ github.run_number }}
           draft: false
           prerelease: false
+
+      # Passo para listar arquivos no diretório de trabalho atual
+      - name: List files in the current directory
+        run: ls -la
+
+      # Ou, se você quiser listar arquivos em um diretório específico, use:
+      - name: List files in a specific directory
+        run: ls -la path/to/directory
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
