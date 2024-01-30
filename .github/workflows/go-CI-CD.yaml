@@ -21,14 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install semantic-release and plugins
-        run: npm install -g semantic-release @semantic-release/changelog @semantic-release/git
-
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
@@ -46,10 +38,15 @@ jobs:
         run: |
           env GOOS=${{ matrix.os }} GOARCH=amd64 go build -v -o plr_calculator-${{ matrix.os }}-${{ github.sha }} ./cmd
 
-      - name: Semantic Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: "diillson/auto-release@latest"
+        with:
+          repo_token: "${{ secrets.REPO_TOKEN }}"
+          automatic_release_tag: "${{ github.run_number }}"
+          prerelease: true
+          title: "PLR Calculator Build"
+          files: |
+            plr_calculator-${{ matrix.os }}-${{ github.sha }}
+            plr_calculator*
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
@@ -88,6 +85,16 @@ jobs:
 #          asset_path: /home/runner/work/calculador-de-plr/calculador-de-plr/plr_calculator*
 #          asset_name: plr_calculator-${{ github.run_number }}.zip
 #          asset_content_type: application/zip
+
+      - uses: "diillson/auto-release@latest"
+        with:
+          repo_token: "${{ secrets.REPO_TOKEN }}"
+          automatic_release_tag: "${{ github.run_number }}"
+          prerelease: false
+          title: "PLR Calculator Release"
+          files: |
+            plr_calculator-${{ matrix.os }}-${{ github.sha }}
+            plr_calculator*
 
       - name: Upload Darwin Build
         uses: actions/upload-release-asset@v1
