@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         go-version: [1.21.6]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [linux, windows, darwin]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Go
