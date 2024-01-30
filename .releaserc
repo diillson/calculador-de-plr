@@ -3,14 +3,6 @@
   "repositoryUrl": "https://github.com/diillson/calculador-de-plr",
   "plugins": [
     "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    {
-      "path": "@semantic-release/github",
-      "assets": [
-        {"path": "build-output-directory/seu-executavel-linux", "label": "Executável Linux"},
-        {"path": "build-output-directory/seu-executavel-windows.exe", "label": "Executável Windows"},
-        {"path": "build-output-directory/seu-executavel-macos", "label": "Executável MacOS"}
-      ]
-    }
+    "@semantic-release/release-notes-generator"
   ]
 }
