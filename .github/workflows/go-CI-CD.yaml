@@ -43,7 +43,7 @@ jobs:
           repo_token: "${{ secrets.REPO_TOKEN }}"
           automatic_release_tag: "${{ github.run_number }}"
           prerelease: true
-          title: "PLR Calculator Build"
+          title: "PLR Calculator Build - ${{ github.run_number }}"
           files: |
             plr_calculator-${{ matrix.os }}-${{ github.sha }}
             plr_calculator*
@@ -91,7 +91,7 @@ jobs:
           repo_token: "${{ secrets.REPO_TOKEN }}"
           automatic_release_tag: "${{ github.run_number }}"
           prerelease: false
-          title: "PLR Calculator Release"
+          title: "PLR Calculator Release - ${{ github.run_number }}"
           files: |
             plr_calculator-${{ matrix.os }}-${{ github.sha }}
             plr_calculator*
