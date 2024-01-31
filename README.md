@@ -38,6 +38,20 @@ Você vai precisar do Go (1.21+), Git e uma xícara de café (ou chá, se prefer
    ```
    (E veja o `plr_calculator` ganhar vida!)
 
+
+4. **Teve problemas ou dificuldades no build? Relaxa tenho a solução para você :**
+   ```sh
+   Acesse o link: https://github.com/diillson/calculador-de-plr/releases
+   na ultima Release, terá já buildado pelo workflow,versões para Mac(Darwin), Linux e Windows.
+   Basta baixar, extrair e executar em seu terminal Linux e Mac ou Prompt/PowerShell sendo Windows.
+      
+   Obs: no Linux e Mac será necessário permitir a execução do binário, basta passar o comando: chmod +x plr_calculator-OS
+   caso abrir a mensagem de que o binario não pode ser executado por não haver desenvolvedor declarado,
+   basta clicar com o botao direito e mandar executar com o seu terminal de preferencia,
+   com isso nas proximas execuções poderá chamar o binario direto pelo terminal.
+   ```
+   (E veja o `plr_calculator` ganhar vida!)
+
 ## 🚀 Decolando com o Aplicativo
 
 Depois de compilar, só rodar:
