@@ -85,8 +85,9 @@ jobs:
 #          asset_path: /home/runner/work/calculador-de-plr/calculador-de-plr/plr_calculator*
 #          asset_name: plr_calculator-${{ github.run_number }}.zip
 #          asset_content_type: application/zip
-
-      - uses: "diillson/auto-release@latest"
+      - name: Create Release
+        id: create_release
+        uses: "diillson/auto-release@latest"
         with:
           repo_token: "${{ secrets.REPO_TOKEN }}"
           automatic_release_tag: "${{ github.run_number }}"
