@@ -94,7 +94,9 @@ jobs:
           prerelease: false
           title: "PLR Calculator Release - ${{ github.run_number }}"
           files: |
-            plr_calculator-${{ matrix.os }}-${{ github.sha }}
+            plr_calculator-linux-${{ github.sha }}
+            plr_calculator-windows-${{ github.sha }}
+            plr_calculator-darwin-${{ github.sha }}
             plr_calculator*
 
       - name: Upload Darwin Build
