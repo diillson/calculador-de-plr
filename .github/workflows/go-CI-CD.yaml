@@ -106,7 +106,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./plr_calculator-darwin.zip
-          asset_name: plr_calculator-darwin.zip
+          asset_name: plr_calculator-darwin-${{ github.run_number }}.zip
           asset_content_type: application/zip
 
       - name: Upload Linux Build
@@ -116,7 +116,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./plr_calculator-linux.zip
-          asset_name: plr_calculator-linux.zip
+          asset_name: plr_calculator-linux-${{ github.run_number }}.zip
           asset_content_type: application/zip
 
       - name: Upload Windows Build
@@ -126,6 +126,6 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./plr_calculator-windows.zip
-          asset_name: plr_calculator-windows.zip
+          asset_name: plr_calculator-windows-${{ github.run_number }}.zip
           asset_content_type: application/zip
 
