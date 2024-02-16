@@ -86,17 +86,39 @@ jobs:
 #          asset_name: plr_calculator-${{ github.run_number }}.zip
 #          asset_content_type: application/zip
       - name: Create Release
+      - uses: google-github-actions/release-please-action@v3
         id: create_release
-        uses: "diillson/auto-release@latest"
         with:
-          repo_token: "${{ secrets.REPO_TOKEN }}"
-          automatic_release_tag: "${{ github.run_number }}"
-          prerelease: false
-          title: "PLR Calculator Release - ${{ github.run_number }}"
-          files: |
-            plr_calculator-linux.zip
-            plr_calculator-windows.zip
-            plr_calculator-darwin.zip
+          path: "."
+          changlog-path: CHANGELOG.md
+          token: ${{ secrets.REPO_TOKEN }}
+          release-type: go
+          nonrepo-tags: true
+          package-name: "calculador-de-plr"
+          command: github-release
+
+
+      - name: Anexar Build Zipado como asset da Release
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: "./"
+            asset_name: plr_calculator-darwin.zip
+            asset_content_type: application/zip
+
+
+#        uses: "diillson/auto-release@latest"
+#        with:
+#          repo_token: "${{ secrets.REPO_TOKEN }}"
+#          automatic_release_tag: "${{ github.run_number }}"
+#          prerelease: false
+#          title: "PLR Calculator Release - ${{ github.run_number }}"
+#          files: |
+#            plr_calculator-linux.zip
+#            plr_calculator-windows.zip
+#            plr_calculator-darwin.zip
 #            plr_calculator*
 #
 #      - name: Upload Darwin Build
