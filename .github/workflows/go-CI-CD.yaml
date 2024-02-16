@@ -38,21 +38,21 @@ jobs:
         run: |
           env GOOS=${{ matrix.os }} GOARCH=amd64 go build -v -o plr_calculator-${{ matrix.os }} ./cmd
 
-      - uses: "diillson/auto-release@latest"
-        with:
-          repo_token: "${{ secrets.REPO_TOKEN }}"
-          automatic_release_tag: "${{ github.run_number }}"
-          prerelease: true
-          title: "PLR Calculator Build - ${{ github.run_number }}"
-          files: |
-            plr_calculator-${{ matrix.os }}-${{ github.sha }}
-            plr_calculator*
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: plr_calculator-${{ matrix.os }}
-          path: plr_calculator-${{ matrix.os }}
+#      - uses: "diillson/auto-release@latest"
+#        with:
+#          repo_token: "${{ secrets.REPO_TOKEN }}"
+#          automatic_release_tag: "${{ github.run_number }}"
+#          prerelease: true
+#          title: "PLR Calculator Build - ${{ github.run_number }}"
+#          files: |
+#            plr_calculator-${{ matrix.os }}-${{ github.sha }}
+#            plr_calculator*
+#
+#      - name: Upload Artifacts
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: plr_calculator-${{ matrix.os }}
+#          path: plr_calculator-${{ matrix.os }}
 
   release:
     needs: build
