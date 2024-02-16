@@ -28,7 +28,7 @@ jobs:
 
       # Passo para listar arquivos no diretório de trabalho atual
       - name: List files in the current directory
-        run: cd ./calculador-de-plr && ls -lah
+        run: ls -lah
 
       # Ou, se você quiser listar arquivos em um diretório específico, use:
       #- name: List files in a specific directory
