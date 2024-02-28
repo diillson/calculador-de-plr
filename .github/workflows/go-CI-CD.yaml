@@ -33,6 +33,7 @@ jobs:
         uses: diillson/auto-pull-request@v1.0.1
         with:
           destination_branch: "main"
+          github_token: ${{ secrets.REPO_TOKEN }}
 
 
 #      - name: Install GitHub CLI
