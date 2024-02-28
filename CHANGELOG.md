@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/diillson/calculador-de-plr/compare/v1.1.0...v1.1.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* adjust workflow CI/CD skip if asset exists. ([cf43a3a](https://github.com/diillson/calculador-de-plr/commit/cf43a3afa1021dcf8af8f34d04c92ff71fb2b984))
+* Clean workflow CI/CD. ([07507fe](https://github.com/diillson/calculador-de-plr/commit/07507fe7c9026c531f1a3470ec8e58af56bb8b90))
+
 ## [1.1.0](https://github.com/diillson/calculador-de-plr/compare/v1.0.0...v1.1.0) (2024-02-28)
 
 
