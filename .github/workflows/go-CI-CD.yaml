@@ -26,33 +26,17 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      # Passo para listar arquivos no diretório de trabalho atual
       - name: List files in the current directory
         run: ls -lah
 
-      # Ou, se você quiser listar arquivos em um diretório específico, use:
-      #- name: List files in a specific directory
-      #  run: ls -la ./calculador-de-plr
-
       - name: Build
-        run: |
-          env GOOS=${{ matrix.os }} GOARCH=amd64 go build -v -o plr_calculator-${{ matrix.os }} ./cmd
+        run: env GOOS=${{ matrix.os }} GOARCH=amd64 go build -v -o plr_calculator-${{ matrix.os }} ./cmd
 
-#      - uses: "diillson/auto-release@latest"
-#        with:
-#          repo_token: "${{ secrets.REPO_TOKEN }}"
-#          automatic_release_tag: "${{ github.run_number }}"
-#          prerelease: true
-#          title: "PLR Calculator Build - ${{ github.run_number }}"
-#          files: |
-#            plr_calculator-${{ matrix.os }}-${{ github.sha }}
-#            plr_calculator*
-#
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
-#        with:
-#          name: plr_calculator-${{ matrix.os }}
-#          path: plr_calculator-${{ matrix.os }}
+        with:
+          name: plr_calculator-${{ matrix.os }}
+          path: plr_calculator-${{ matrix.os }}
 
   release:
     needs: build
@@ -61,97 +45,35 @@ jobs:
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
+        with:
+          path: .
 
-      # Passo para listar arquivos no diretório de trabalho atual
       - name: List files in the current directory
-        run: ls -lah && pwd
-
-      # Ou, se você quiser listar arquivos em um diretório específico, use:
-      #- name: List files in a specific directory
-      #  run: ls -la ./calculador-de-plr
+        run: ls -lah
 
       - name: Zip the build directories
         run: |
-          zip -r plr_calculator-darwin.zip plr_calculator-darwin
-          zip -r plr_calculator-linux.zip plr_calculator-linux
-          zip -r plr_calculator-windows.zip plr_calculator-windows
-          
+          zip -r plr_calculator-darwin.zip plr_calculator-darwin || true
+          zip -r plr_calculator-linux.zip plr_calculator-linux || true
+          zip -r plr_calculator-windows.zip plr_calculator-windows || true
 
       - name: List files in the current directory
-        run: ls -lah && pwd
+        run: ls -lah
 
-#      - name: Upload Release Asset
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: /home/runner/work/calculador-de-plr/calculador-de-plr/plr_calculator*
-#          asset_name: plr_calculator-${{ github.run_number }}.zip
-#          asset_content_type: application/zip
       - name: Create Release
         uses: google-github-actions/release-please-action@v3
         id: create_release
         with:
-          path: "./"
-          changlog-path: CHANGELOG.md
-          token: ${{ secrets.REPO_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: go
-          nonrepo-tags: true
           package-name: "calculador-de-plr"
-          command: github-release
-
 
       - name: Anexar Build Zipado como asset da Release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "./"
+          asset_path: plr_calculator-darwin.zip
           asset_name: plr_calculator-darwin.zip
           asset_content_type: application/zip
-
-
-#        uses: "diillson/auto-release@latest"
-#        with:
-#          repo_token: "${{ secrets.REPO_TOKEN }}"
-#          automatic_release_tag: "${{ github.run_number }}"
-#          prerelease: false
-#          title: "PLR Calculator Release - ${{ github.run_number }}"
-#          files: |
-#            plr_calculator-linux.zip
-#            plr_calculator-windows.zip
-#            plr_calculator-darwin.zip
-#            plr_calculator*
-#
-#      - name: Upload Darwin Build
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: ./plr_calculator-darwin.zip
-#          asset_name: plr_calculator-darwin-${{ github.run_number }}.zip
-#          asset_content_type: application/zip
-#
-#      - name: Upload Linux Build
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: ./plr_calculator-linux.zip
-#          asset_name: plr_calculator-linux-${{ github.run_number }}.zip
-#          asset_content_type: application/zip
-#
-#      - name: Upload Windows Build
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: ./plr_calculator-windows.zip
-#          asset_name: plr_calculator-windows-${{ github.run_number }}.zip
-#          asset_content_type: application/zip
-
