@@ -29,30 +29,30 @@ jobs:
       - name: Build
         run: env GOOS=${{ matrix.os }} GOARCH=amd64 go build -v -o plr_calculator-${{ matrix.os }} ./cmd
 
-      - name: Install GitHub CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gh
-
-      - name: Check if PR exists
-        id: check_pr
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          PR_EXISTS=$(gh pr list --head diillson:auto-pr/develop-to-main --base main --state open | wc -l)
-          echo "PR_EXISTS=$PR_EXISTS" >> $GITHUB_ENV
-
-      - name: Create Pull Request
-        if: env.PR_EXISTS == 0
-        uses: peter-evans/create-pull-request@v4
-        with:
-          token: ${{ secrets.REPO_TOKEN }}
-          commit-message: "Merge develop into main"
-          title: "Merge develop into main"
-          body: "Auto-generated PR to merge develop into main."
-          branch: "auto-pr/develop-to-main"
-          base: "main"
-          delete-branch: true
+#      - name: Install GitHub CLI
+#        run: |
+#          sudo apt-get update
+#          sudo apt-get install -y gh
+#
+#      - name: Check if PR exists
+#        id: check_pr
+#        env:
+#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          PR_EXISTS=$(gh pr list --head diillson:auto-pr/develop-to-main --base main --state open | wc -l)
+#          echo "PR_EXISTS=$PR_EXISTS" >> $GITHUB_ENV
+#
+#      - name: Create Pull Request
+#        if: env.PR_EXISTS == 0
+#        uses: peter-evans/create-pull-request@v4
+#        with:
+#          token: ${{ secrets.REPO_TOKEN }}
+#          commit-message: "Merge develop into main"
+#          title: "Merge develop into main"
+#          body: "Auto-generated PR to merge develop into main."
+#          branch: "auto-pr/develop-to-main"
+#          base: "main"
+#          delete-branch: true
 
 
 #      - name: Upload Artifacts
