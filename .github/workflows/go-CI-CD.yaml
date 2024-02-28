@@ -64,7 +64,7 @@ jobs:
         uses: google-github-actions/release-please-action@v3
         id: create_release
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.REPO_TOKEN }}
           release-type: go
           package-name: "calculador-de-plr"
 
