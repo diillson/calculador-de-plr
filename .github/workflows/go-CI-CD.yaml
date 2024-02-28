@@ -3,10 +3,7 @@ name: Go Build and Release
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - develop
 
 jobs:
   build:
@@ -32,48 +29,90 @@ jobs:
       - name: Build
         run: env GOOS=${{ matrix.os }} GOARCH=amd64 go build -v -o plr_calculator-${{ matrix.os }} ./cmd
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: plr_calculator-${{ matrix.os }}
-          path: plr_calculator-${{ matrix.os }}
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-        with:
-          path: .
+#      - name: Install GitHub CLI
+#        run: |
+#          sudo apt-get update
+#          sudo apt-get install -y gh
+#
+#      - name: Check if PR exists
+#        id: check_pr
+#        env:
+#          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          PR_EXISTS=$(gh pr list --head diillson:auto-pr/develop-to-main --base main --state open | wc -l)
+#          echo "PR_EXISTS=$PR_EXISTS" >> $GITHUB_ENV
+#
+#      - name: Create Pull Request
+#        if: env.PR_EXISTS == 0
+#        uses: peter-evans/create-pull-request@v4
+#        with:
+#          token: ${{ secrets.REPO_TOKEN }}
+#          commit-message: "Merge develop into main"
+#          title: "Merge develop into main"
+#          body: "Auto-generated PR to merge develop into main."
+#          branch: "auto-pr/develop-to-main"
+#          base: "main"
+#          delete-branch: true
 
-      - name: List files in the current directory
-        run: ls -lah
 
-      - name: Zip the build directories
-        run: |
-          zip -r plr_calculator-darwin.zip plr_calculator-darwin || true
-          zip -r plr_calculator-linux.zip plr_calculator-linux || true
-          zip -r plr_calculator-windows.zip plr_calculator-windows || true
+#      - name: Upload Artifacts
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: plr_calculator-${{ matrix.os }}
+#          path: plr_calculator-${{ matrix.os }}
+#
+#  release:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+#    steps:
+#      - name: Download Artifacts
+#        uses: actions/download-artifact@v3
+#        with:
+#          path: .
+#
+#      - name: List files in the current directory
+#        run: ls -lah
+#
+#      - name: Zip the build directories
+#        run: |
+#          zip -r plr_calculator-darwin.zip plr_calculator-darwin || true
+#          zip -r plr_calculator-linux.zip plr_calculator-linux || true
+#          zip -r plr_calculator-windows.zip plr_calculator-windows || true
+#
+#      - name: List files in the current directory
+#        run: ls -lah
+#
+#      - name: Create Release
+#        uses: google-github-actions/release-please-action@v3
+#        id: create_release
+#        with:
+#          token: ${{ secrets.REPO_TOKEN }}
+#          release-type: go
+#          package-name: "calculador-de-plr"
+#
+#      - name: Install GitHub CLI
+#        run: |
+#          sudo apt-get update
+#          sudo apt-get install -y gh
+#
+#      # Novo passo para fazer o upload dos artefatos
+#      - name: Upload Artifact to Release
+#        run: |
+#          LATEST_TAG=$(gh release list -L 1 --repo ${{ github.repository }} | cut -f1)
+#          for file in *.zip; do
+#            gh release upload $LATEST_TAG "$file" --repo ${{ github.repository }}
+#          done
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: List files in the current directory
-        run: ls -lah
-
-      - name: Create Release
-        uses: google-github-actions/release-please-action@v3
-        id: create_release
-        with:
-          token: ${{ secrets.REPO_TOKEN }}
-          release-type: go
-          package-name: "calculador-de-plr"
-
-      - name: Anexar Build Zipado como asset da Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: plr_calculator-darwin.zip
-          asset_name: plr_calculator-darwin.zip
-          asset_content_type: application/zip
+#      - name: Anexar Build Zipado como asset da Release
+#        uses: actions/upload-release-asset@v1
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          upload_url: ${{ steps.create_release.outputs.upload_url }}
+#          asset_path: plr_calculator-darwin.zip
+#          asset_name: plr_calculator-darwin.zip
+#          asset_content_type: application/zip
