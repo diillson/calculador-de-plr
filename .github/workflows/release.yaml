@@ -76,9 +76,13 @@ jobs:
       - name: Upload Artifact to Release
         run: |
           LATEST_TAG=$(gh release list -L 1 --repo ${{ github.repository }} | cut -f1)
+          ASSETS=$(gh release view $LATEST_TAG --repo ${{ github.repository }} --json assets -q '.assets[].name')
           for file in *.zip; do
-            gh release upload $LATEST_TAG "$file" --repo ${{ github.repository }}
+            if echo "$ASSETS" | grep -q "^${file}$"; then
+              echo "Asset ${file} already exists in the release. Skipping upload."
+            else  
+              gh release upload $LATEST_TAG "$file" --repo ${{ github.repository }}
+            fi
           done
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-
