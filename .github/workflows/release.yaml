@@ -73,7 +73,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gh
 
-      # Novo passo para fazer o upload dos artefatos
       - name: Upload Artifact to Release
         run: |
           LATEST_TAG=$(gh release list -L 1 --repo ${{ github.repository }} | cut -f1)
@@ -83,12 +82,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
 
-#      - name: Anexar Build Zipado como asset da Release
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: plr_calculator-darwin.zip
-#          asset_name: plr_calculator-darwin.zip
-#          asset_content_type: application/zip
