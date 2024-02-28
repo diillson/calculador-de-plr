@@ -48,8 +48,8 @@ jobs:
 #            plr_calculator-${{ matrix.os }}-${{ github.sha }}
 #            plr_calculator*
 #
-#      - name: Upload Artifacts
-#        uses: actions/upload-artifact@v3
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
 #        with:
 #          name: plr_calculator-${{ matrix.os }}
 #          path: plr_calculator-${{ matrix.os }}
@@ -64,7 +64,7 @@ jobs:
 
       # Passo para listar arquivos no diretório de trabalho atual
       - name: List files in the current directory
-        run: ls -lah && pwd && cd ./calculador-de-plr && ls -lah
+        run: ls -lah && pwd
 
       # Ou, se você quiser listar arquivos em um diretório específico, use:
       #- name: List files in a specific directory
