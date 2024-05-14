@@ -24,10 +24,10 @@ type ResultadoIRPF struct {
 func TabelaIRPF() []FaixaIRPF {
 	return []FaixaIRPF{
 		{0.0, 0.0},      // Isento
-		{7.5, 555.53},   // Primeira faixa
-		{15.0, 1299.70}, // Segunda faixa
-		{22.5, 2287.23}, // Terceira faixa
-		{27.5, 3106.25}, // Quarta faixa
+		{7.5, 573.06},   // Primeira faixa
+		{15.0, 1317.23}, // Segunda faixa
+		{22.5, 2304.76}, // Terceira faixa
+		{27.5, 3123.78}, // Quarta faixa
 	}
 }
 
