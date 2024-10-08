@@ -74,13 +74,13 @@ func determinarFaixaIRPF(valor float64, tabela []domain.FaixaIRPF) int {
 	// Esta é uma função simplificada.
 	// A lógica exata depende das faixas de valores da tabela do IRPF.
 	// Você deve implementar a lógica de acordo com as faixas atuais.
-	if valor <= 7640.80 {
+	if valor <= 2259.20 {
 		return 0
-	} else if valor <= 9922.28 {
+	} else if valor <= 2826.65 {
 		return 1
-	} else if valor <= 13167.00 {
+	} else if valor <= 3751.05 {
 		return 2
-	} else if valor <= 16380.38 {
+	} else if valor <= 4664.68 {
 		return 3
 	} else {
 		return 4
