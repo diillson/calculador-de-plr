@@ -25,7 +25,7 @@ func TabelaIRPF() []FaixaIRPF {
 	return []FaixaIRPF{
 		{0.0, 0.0},     // Isento
 		{7.5, 169.44},  // Primeira faixa
-		{15.0, 381.44}, // Segunda  faixa
+		{15.0, 381.44}, // Segunda faixa
 		{22.5, 662.77}, // Terceira faixa
 		{27.5, 896.00}, // Quarta faixa
 	}
