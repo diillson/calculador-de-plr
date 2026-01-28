@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.2.1](https://github.com/diillson/calculador-de-plr/compare/v1.2.0...v1.2.1) (2026-01-28)
+
+
+### Bug Fixes
+
+* bump Go version to 1.24 in go.mod and README.md ([ee1804c](https://github.com/diillson/calculador-de-plr/commit/ee1804cf9b5365bc8b673569ff1fdbdf28afbc0a))
+* bump Go version to 1.24 in go.mod and README.md ([9d3c3ed](https://github.com/diillson/calculador-de-plr/commit/9d3c3ed60dceb36176e9de0e40b2f22e07061244))
+* bump Go version to 1.24 in go.mod and README.md ([9d3c3ed](https://github.com/diillson/calculador-de-plr/commit/9d3c3ed60dceb36176e9de0e40b2f22e07061244))
+* bump Go version to 1.24 in go.mod and README.md ([3962bb3](https://github.com/diillson/calculador-de-plr/commit/3962bb34d0958de1f46782a49ad4822350856577))
+* bump Go version to 1.24.7 and rename build artifacts in workflows ([6274842](https://github.com/diillson/calculador-de-plr/commit/627484255a77016a75a6907df83a3f38b0ed1995))
+
 ## [1.2.0](https://github.com/diillson/calculador-de-plr/compare/v1.1.3...v1.2.0) (2026-01-28)
 
 
