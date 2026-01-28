@@ -14,18 +14,13 @@ func NewCalculator() *Calculator {
 }
 
 func formatarNumero(num float64) string {
-	// Formatar o número com duas casas decimais
 	s := fmt.Sprintf("%.2f", num)
-
-	// Dividir em partes inteira e decimal
 	partes := strings.Split(s, ".")
 	inteiro := partes[0]
 	decimal := partes[1]
 
-	// Inverter a string do inteiro para facilitar a inserção das vírgulas
 	inteiroInvertido := reverseString(inteiro)
 
-	// Adicionar as vírgulas
 	var comVirgulas strings.Builder
 	for i, char := range inteiroInvertido {
 		if i > 0 && i%3 == 0 {
@@ -34,10 +29,7 @@ func formatarNumero(num float64) string {
 		comVirgulas.WriteRune(char)
 	}
 
-	// Inverter novamente para a ordem correta
 	inteiroFormatado := reverseString(comVirgulas.String())
-
-	// Juntar a parte inteira e decimal
 	return inteiroFormatado + "." + decimal
 }
 
@@ -50,7 +42,6 @@ func reverseString(s string) string {
 }
 
 func (c *Calculator) CalcularPLR(dados domain.PLRDados) (string, error) {
-	// Ajustar a porcentagem de participação se for maior que 1 (como 83 em vez de 0.83)
 	if dados.PorcentagemParticipacao > 1 {
 		dados.PorcentagemParticipacao /= 100
 	}
@@ -65,26 +56,20 @@ func (c *Calculator) CalcularPLR(dados domain.PLRDados) (string, error) {
 		}).Errorf("Erro ao calcular PLR: %v", err)
 		return "", err
 	}
-	// Formatação do valor da PLR para melhor legibilidade
+
 	plrFormatado := formatarNumero(plr)
 	return plrFormatado, nil
 }
 
-func determinarFaixaIRPF(valor float64, tabela []domain.FaixaIRPF) int {
-	// Esta é uma função simplificada.
-	// A lógica exata depende das faixas de valores da tabela do IRPF.
-	// Você deve implementar a lógica de acordo com as faixas atuais.
-	if valor <= 2259.20 {
-		return 0
-	} else if valor <= 2826.65 {
-		return 1
-	} else if valor <= 3751.05 {
-		return 2
-	} else if valor <= 4664.68 {
-		return 3
-	} else {
-		return 4
+// determinarFaixaIRPF determina a faixa de IRPF baseada no valor anual
+func determinarFaixaIRPF(valorAnual float64, tabela []domain.FaixaIRPF) int {
+	for i, faixa := range tabela {
+		if valorAnual >= faixa.LimiteInferior && valorAnual <= faixa.LimiteSuperior {
+			return i
+		}
 	}
+	// Se não encontrou, retorna a última faixa (maior alíquota)
+	return len(tabela) - 1
 }
 
 func calcularImposto(baseCalculo float64, faixa domain.FaixaIRPF) float64 {
@@ -92,22 +77,39 @@ func calcularImposto(baseCalculo float64, faixa domain.FaixaIRPF) float64 {
 }
 
 func (c *Calculator) CalcularIRPF(plr float64, tabela []domain.FaixaIRPF) (*domain.ResultadoIRPF, error) {
-	// Defina a tabela IRPF aqui
 	tabelaIRPF := domain.TabelaIRPF()
 
-	// Determinar a faixa de IRPF
-	faixa := determinarFaixaIRPF(plr, tabelaIRPF)
-	if faixa < 0 || faixa >= len(tabelaIRPF) {
-		return nil, fmt.Errorf("Erro ao determinar a faixa de IRPF")
+	// Determinar a faixa de IRPF baseado no valor anual da PLR
+	faixaIndex := determinarFaixaIRPF(plr, tabelaIRPF)
+
+	if faixaIndex < 0 || faixaIndex >= len(tabelaIRPF) {
+		return nil, fmt.Errorf("erro ao determinar a faixa de IRPF para o valor: R$ %.2f", plr)
 	}
 
+	faixa := tabelaIRPF[faixaIndex]
+
 	// Calcular o imposto
-	impostoApurado := calcularImposto(plr, tabelaIRPF[faixa])
+	impostoApurado := calcularImposto(plr, faixa)
+
+	// Garantir que o imposto não seja negativo
+	if impostoApurado < 0 {
+		impostoApurado = 0
+	}
+
 	valorLiquido := plr - impostoApurado
 
+	logrus.WithFields(logrus.Fields{
+		"plrBruta":       plr,
+		"faixaIndex":     faixaIndex,
+		"aliquota":       faixa.Aliquota,
+		"parcelaDeduzir": faixa.ParcelaDeduzir,
+		"impostoApurado": impostoApurado,
+		"valorLiquido":   valorLiquido,
+	}).Debug("Cálculo de IRPF realizado")
+
 	return &domain.ResultadoIRPF{
-		Aliquota:       tabelaIRPF[faixa].Aliquota,
-		ParcelaDeduzir: tabelaIRPF[faixa].ParcelaDeduzir,
+		Aliquota:       faixa.Aliquota,
+		ParcelaDeduzir: faixa.ParcelaDeduzir,
 		ImpostoApurado: impostoApurado,
 		ValorLiquido:   valorLiquido,
 	}, nil

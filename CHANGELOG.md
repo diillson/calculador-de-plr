@@ -1,5 +1,46 @@
 # Changelog
 
+## [1.1.3](https://github.com/diillson/calculador-de-plr/compare/v1.1.2...v1.1.3) (2024-10-08)
+
+
+### Bug Fixes
+
+* update table IPRF 2024. ([70d0bd0](https://github.com/diillson/calculador-de-plr/commit/70d0bd0c156e21b354ac1dc05869df29d09e04b9))
+
+## [1.1.2](https://github.com/diillson/calculador-de-plr/compare/v1.1.1...v1.1.2) (2024-05-15)
+
+
+### Bug Fixes
+
+* update tabela IRPF e Aliquota 2024 e 2025. ([7c2aae7](https://github.com/diillson/calculador-de-plr/commit/7c2aae77bf53ec1ed06a6414b3b4d4a7076bd712))
+
+## [1.1.1](https://github.com/diillson/calculador-de-plr/compare/v1.1.0...v1.1.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* adjust workflow CI/CD skip if asset exists. ([cf43a3a](https://github.com/diillson/calculador-de-plr/commit/cf43a3afa1021dcf8af8f34d04c92ff71fb2b984))
+* Clean workflow CI/CD. ([07507fe](https://github.com/diillson/calculador-de-plr/commit/07507fe7c9026c531f1a3470ec8e58af56bb8b90))
+
+## [1.1.0](https://github.com/diillson/calculador-de-plr/compare/v1.0.0...v1.1.0) (2024-02-28)
+
+
+### Features
+
+* Update workflow CI/CD, adjust gitflow. ([d444b9d](https://github.com/diillson/calculador-de-plr/commit/d444b9d1591d39c7b384f412bb6a87a4059dab93))
+* Update workflow CI/CD, adjust gitflow. ([668f394](https://github.com/diillson/calculador-de-plr/commit/668f39474867cf1085739c56c1138c6339f830ae))
+* Update workflow CI/CD, adjust gitflow. ([45740c8](https://github.com/diillson/calculador-de-plr/commit/45740c840005c29cba463413d2d9c0c6b5ffa4a8))
+* Update workflow CI/CD, adjust gitflow. ([857fd8d](https://github.com/diillson/calculador-de-plr/commit/857fd8d948911960bee743a1a7fefaebd789126d))
+* Update workflow CI/CD, adjust gitflow. ([8680f44](https://github.com/diillson/calculador-de-plr/commit/8680f44360f2fd5e63b33db530f86506b7767943))
+* Update workflow CI/CD, adjust gitflow. ([9c12b5f](https://github.com/diillson/calculador-de-plr/commit/9c12b5f20ce2e44b1c1522ac55583bf33d36498b))
+* Update workflow CI/CD, adjust gitflow. ([2f3e26f](https://github.com/diillson/calculador-de-plr/commit/2f3e26fddab67cc166369a36a2a09d282b1e86a4))
+* Update workflow CI/CD, adjust gitflow. ([7a1bb65](https://github.com/diillson/calculador-de-plr/commit/7a1bb654b700ebada3a14fda3966eb76c25efbb2))
+* Update workflow CI/CD, adjust gitflow. ([6356801](https://github.com/diillson/calculador-de-plr/commit/6356801de86cb4d25e2ec316a78a125edccb3d96))
+* Update workflow CI/CD, adjust gitflow. ([dcd430a](https://github.com/diillson/calculador-de-plr/commit/dcd430a94507e0ffc8074071d0833bc1159e7b83))
+* Update workflow CI/CD, adjust gitflow. ([558bdc6](https://github.com/diillson/calculador-de-plr/commit/558bdc6fb18e61f462fedea7999ebb6398a33334))
+* Update workflow CI/CD, adjust gitflow. ([37836dc](https://github.com/diillson/calculador-de-plr/commit/37836dc9b52d852175db6e10a99a89452186a2f3))
+* Update workflow CI/CD. ([eccb907](https://github.com/diillson/calculador-de-plr/commit/eccb9079a6e0f8cffd89fbe21027c799dd24d378))
+
 ## 1.0.0 (2024-02-28)
 
 
