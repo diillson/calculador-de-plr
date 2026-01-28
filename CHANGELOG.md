@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/diillson/calculador-de-plr/compare/v1.1.3...v1.2.0) (2026-01-28)
+
+
+### Features
+
+* update IRPF table and calculations for 2024/2025 ([042df79](https://github.com/diillson/calculador-de-plr/commit/042df798b77de4e31aa9a961521998f05f55d556))
+
 ## [1.1.3](https://github.com/diillson/calculador-de-plr/compare/v1.1.2...v1.1.3) (2024-10-08)
 
 
