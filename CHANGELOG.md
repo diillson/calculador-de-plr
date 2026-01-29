@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/diillson/calculador-de-plr/compare/v1.2.1...v1.3.0) (2026-01-29)
+
+
+### Features
+
+* add support for IRPF 2025 tax tables with interactive period selection ([2f1d070](https://github.com/diillson/calculador-de-plr/commit/2f1d070c4cc64801a7402961eeea4a779a9c6103))
+
+
+### Bug Fixes
+
+* add support for IRPF 2025 tax tables with interactive period selection ([4e39ac2](https://github.com/diillson/calculador-de-plr/commit/4e39ac2196692ae9fbbc791281339e85a945bb00))
+* add support for IRPF 2025 tax tables with interactive period selection ([4e39ac2](https://github.com/diillson/calculador-de-plr/commit/4e39ac2196692ae9fbbc791281339e85a945bb00))
+
 ## [1.2.1](https://github.com/diillson/calculador-de-plr/compare/v1.2.0...v1.2.1) (2026-01-28)
 
 
