@@ -16,7 +16,7 @@ func TestCalculator_CalcularPLR(t *testing.T) {
 	}{
 		{
 			name: "Caso padrão",
-			dados: domain.PLRDados;
+			 domain.PLRDados;
 				Salario:                 10000,
 				Multiplicador:           2,
 				PorcentagemParticipacao: 0.8,
